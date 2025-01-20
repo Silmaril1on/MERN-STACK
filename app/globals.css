@@ -1,21 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #000;
+  color: white;
+  font-family: josefin sans;
+}
+
+@layer components {
+  .base-padding {
+    @apply p-3 lg:p-5;
+  }
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+  .form-container {
+    @apply flex-center w-[300px] lg:w-[25%] font-secondary p-5 space-y-5 flex-col;
+  }
+  input,
+  textarea {
+    @apply bg-green/10 text-green placeholder:text-green placeholder:opacity-50 outline-none border border-green p-2 w-full;
+  }
+  .green-btn {
+    @apply border border-green bg-green/20 px-5 py-1 text-green hover:bg-green/40 duration-300;
+  }
+  .purple-btn {
+    @apply border border-purple bg-purple/20 px-5 py-1 text-purple hover:bg-purple/40 duration-300;
+  }
+  .pink-btn {
+    @apply border border-pink bg-pink/20 px-5 py-1 text-pink hover:bg-pink/40 duration-300;
+  }
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #0a0f24 inset !important;
+  -webkit-text-fill-color: #4affd7 !important;
 }

@@ -1,0 +1,24 @@
+{
+  "name": "Boris brejcha",
+  "desc": "German DJ and record produce",
+  "stageName": false,
+  "country": "Germany",
+  "city": "Frankfurt",
+  "poster": "imgUrl-from-firebase",
+  "flag": "flagImageURL-from firebase",
+  "label": "Fucking Serious",
+  "date": "april 2, 1977",
+  "genre": ["high-tech minimal", "melodic techno"],
+  "bio": "Michael Fassbender is an Irish actor who was born in Heidelberg, Germany, to a German father, Josef, and an Irish mother, Adele (originally from Larne, County Antrim, in Northern Ireland). ",
+  "profiles": [
+    {
+      "name": "facebook",
+      "link": "www.facebook.com/borisbrejcha"
+    },
+    {
+      "name": "instagram",
+      "link": "www.instagram.com/borisbrejcha"
+    }
+  ],
+  "gallery": ["image1", "image2", "image#", "image4"]
+}
