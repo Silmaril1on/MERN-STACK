@@ -43,6 +43,9 @@ body {
   .pink-btn {
     @apply border border-pink bg-pink/20 px-5 py-1 text-pink hover:bg-pink/40 duration-300;
   }
+  .link-green {
+    @apply text-green font-bold hover:underline;
+  }
 }
 
 input:-webkit-autofill,

@@ -14,6 +14,9 @@ const ArtistForm = () => {
   const [birth, setBirth] = useState("");
   const [genres, setGenres] = useState([""]);
   const [profiles, setProfiles] = useState([{ name: "", link: "" }]);
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleAddGenre = () => {
     setGenres([...genres, ""]);
@@ -35,46 +38,70 @@ const ArtistForm = () => {
     setProfiles(updatedProfiles);
   };
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const artistData = {
-      name,
-      desc,
-      stageName,
-      country,
-      city,
-      label,
-      bio,
-      flag,
-      birth: birth,
-      genre: genres,
-      profiles,
-    };
+    setLoading(true);
 
-    const response = await fetch("http://localhost:3500/api/artists", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(artistData), // Send data as JSON
-    });
+    try {
+      const artistData = {
+        name,
+        desc,
+        stageName,
+        country,
+        city,
+        label,
+        bio,
+        flag,
+        birth,
+        genre: genres,
+        profiles,
+        image,
+      };
 
-    if (response.ok) {
-      setName("");
-      setDesc("");
-      setStageName("");
-      setCountry("");
-      setCity("");
-      setLabel("");
-      setBio("");
-      setFlag("");
-      setBirth("");
-      setGenres([""]);
-      setProfiles([{ name: "", link: "" }]);
-      console.log("New artist added", await response.json());
-    } else {
-      const error = await response.json();
-      console.log("Error:", error);
+      const response = await fetch("http://localhost:3500/api/artists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(artistData),
+      });
+
+      if (response.ok) {
+        // Reset form
+        setName("");
+        setDesc("");
+        setStageName("");
+        setCountry("");
+        setCity("");
+        setLabel("");
+        setBio("");
+        setFlag("");
+        setBirth("");
+        setGenres([""]);
+        setProfiles([{ name: "", link: "" }]);
+        setImage(null);
+        setImagePreview(null);
+        console.log("New artist added", await response.json());
+      } else {
+        const error = await response.json();
+        console.log("Error:", error);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -83,6 +110,25 @@ const ArtistForm = () => {
       <h2 className="text-3xl font-bold">Create Artist</h2>
       <form className="form-container" onSubmit={handleSubmit}>
         {/* Artist Name */}
+        <div className="w-full space-y-2">
+          <label className="block text-green">Artist Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="w-full"
+          />
+          {imagePreview && (
+            <div className="mt-2">
+              <img
+                src={imagePreview}
+                alt="Preview"
+                className="w-32 h-32 object-cover rounded"
+              />
+            </div>
+          )}
+        </div>
+
         <input
           id="artist name"
           name="artist name"
@@ -218,8 +264,8 @@ const ArtistForm = () => {
             Add Profile
           </button>
         </div>
-        <button className="green-btn" type="submit">
-          Create Artist
+        <button disabled={loading} className="green-btn" type="submit">
+          {loading ? "Creating Artist..." : "Create Artist"}
         </button>
       </form>
     </div>

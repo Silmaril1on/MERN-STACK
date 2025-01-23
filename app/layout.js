@@ -1,4 +1,5 @@
 import "./globals.css";
+import WarningPopUp from "./helpers/WarningPopUp";
 import Footer from "./layout/footer/Footer";
 import Header from "./layout/header/Header";
 import { StoreProvider } from "./store/StoreProvider";
@@ -13,9 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <StoreProvider>
       <html lang="en">
-        <body className="base-padding flex flex-col h-screen">
+        <body className="base-padding flex flex-col h-screen relative overflow-hidden">
           <Header />
           {children}
+          <WarningPopUp />
           <Footer />
         </body>
       </html>
