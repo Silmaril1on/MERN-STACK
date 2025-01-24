@@ -1,4 +1,5 @@
 import "./globals.css";
+import RatingPopUp from "./helpers/RatingPopUp";
 import WarningPopUp from "./helpers/WarningPopUp";
 import Footer from "./layout/footer/Footer";
 import Header from "./layout/header/Header";
@@ -14,10 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <StoreProvider>
       <html lang="en">
-        <body className="base-padding flex flex-col h-screen relative overflow-hidden">
+        <body className="base-padding text-white flex flex-col h-screen relative overflow-hidden">
           <Header />
           {children}
           <WarningPopUp />
+          <RatingPopUp />
           <Footer />
         </body>
       </html>

@@ -10,6 +10,8 @@ export const modalAnimation = {
   },
   exit: {
     x: "100%",
-    opacity: 0,
+    transition: {
+      duration: 0.6,
+    },
   },
 };

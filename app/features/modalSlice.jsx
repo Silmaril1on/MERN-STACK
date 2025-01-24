@@ -4,6 +4,7 @@ const initialState = {
   loading: true,
   error: null,
   warning: null,
+  rateModal: null,
 };
 
 const modalSlice = createSlice({
@@ -20,9 +21,13 @@ const modalSlice = createSlice({
     setWarning: (state, action) => {
       state.warning = action.payload;
     },
+    setRateModal: (state, action) => {
+      state.rateModal = action.payload;
+    },
   },
 });
 
-export const { setLoading, setError, setWarning } = modalSlice.actions;
+export const { setLoading, setError, setWarning, setRateModal } =
+  modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;
