@@ -26,7 +26,7 @@ const rippleVariants = {
 
 const Spinner = () => {
   return (
-    <div className="relative inline-block w-8 h-8 text-purple">
+    <div className="relative inline-block w-8 h-8 text-green">
       <motion.div
         style={{
           position: "absolute",

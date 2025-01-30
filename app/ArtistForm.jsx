@@ -17,6 +17,7 @@ const ArtistForm = () => {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [sex, setSex] = useState("");
 
   const handleAddGenre = () => {
     setGenres([...genres, ""]);
@@ -136,6 +137,14 @@ const ArtistForm = () => {
           placeholder="Artist Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          id="artist sex"
+          name="artist sex"
+          type="text"
+          placeholder="Artist Sex"
+          value={sex}
+          onChange={(e) => setSex(e.target.value)}
         />
         {/* Artist Description */}
         <input

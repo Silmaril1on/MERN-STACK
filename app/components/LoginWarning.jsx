@@ -3,7 +3,7 @@ import Close from "./Close";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { setWarning } from "../features/modalSlice";
-import { modalAnimation } from "../(routes)/animations/motionValues";
+import { modalAnimation } from "../animations/motionValues";
 
 const LoginWarning = () => {
   const dispatch = useDispatch();

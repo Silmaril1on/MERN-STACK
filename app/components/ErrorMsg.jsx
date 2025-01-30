@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { setError } from "../features/modalSlice";
 import { IoMdClose } from "react-icons/io";
-import { modalAnimation } from "../(routes)/animations/motionValues";
+import { modalAnimation } from "../animations/motionValues";
 
 const ErrorMsg = ({ error }) => {
   const dispatch = useDispatch();

@@ -8,7 +8,7 @@ const Navigation = () => {
       <Logo />
       <h1>Artists</h1>
       <h1>Festivals</h1>
-      <Link className=" font-bold green-btn" href="/createdj">
+      <Link className="font-bold green-btn" href="/createdj">
         Create DJ
       </Link>
     </div>

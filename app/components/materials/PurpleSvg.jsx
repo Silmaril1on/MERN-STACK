@@ -1,6 +1,6 @@
 const PurpleSvg = () => {
   return (
-    <svg width="100%" height="100%" className="absolute inset-0">
+    <svg width="100%" height="100%" className="absolute inset-0 z-0">
       <rect
         stroke="url(#gradient)"
         fill="none"

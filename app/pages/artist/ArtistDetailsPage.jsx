@@ -1,19 +1,18 @@
-import Image from "next/image";
+import Info from "./basicinfo/Info";
+import ArtistAvatar from "./basicinfo/ArtistAvatar";
+import LeftSlideName from "./basicinfo/LeftSlideName";
+import MidSection from "./midsection/MidSection";
 
 const ArtistDetailsPage = ({ data }) => {
   return (
-    <div className="h-full flex-col flex-center">
-      <h1 className="text-5xl">{data.name}</h1>
-      <div>
-        <Image
-          width={400}
-          height={400}
-          src={data.image}
-          alt={data.name}
-          priority
-        />
-      </div>
-    </div>
+    <main className="relative">
+      <section className="flex flex-row relative px-[10%]">
+        <LeftSlideName data={data} />
+        <ArtistAvatar data={data} />
+        <Info data={data} />
+      </section>
+      <MidSection data={data} />
+    </main>
   );
 };
 

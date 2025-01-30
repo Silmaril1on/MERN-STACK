@@ -1,9 +1,9 @@
 import ArtistsSection from "./artistsSection/ArtistsSection";
 
-const HomePage = ({ artistsData }) => {
+const HomePage = () => {
   return (
-    <section className="flex flex-col grow">
-      <ArtistsSection artistsData={artistsData} />
+    <section className="flex flex-col overflow-hidden grow bg-neutral-900 py-5">
+      <ArtistsSection />
     </section>
   );
 };

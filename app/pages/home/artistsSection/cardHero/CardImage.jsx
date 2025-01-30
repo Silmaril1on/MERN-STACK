@@ -2,14 +2,15 @@ import Image from "next/image";
 
 const CardImage = ({ item }) => {
   return (
-    <div className="w-64 h-64 overflow-hidden">
+    <div className="w-full h-64 overflow-hidden">
       <Image
-        className="group-hover:scale-110 duration-300"
+        className="brightness-90 group-hover:brightness-100 duration-300 w-full h-full object-cover"
         src={item.image}
-        width={400}
-        height={400}
-        alt={item.image}
+        width={500}
+        height={500}
+        alt={item.name}
         priority
+        quality={100}
       />
     </div>
   );

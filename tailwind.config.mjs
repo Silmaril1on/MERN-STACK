@@ -11,6 +11,7 @@ export default {
         small: "5p 5px 10px 10px",
       },
       colors: {
+        yellow: "#FFD700",
         blue: "#0a0f24",
         gray: "#1c1f2e",
         pink: "#ff3d81",
@@ -20,8 +21,9 @@ export default {
         white: "#ffffff",
       },
       fontFamily: {
-        primary: ["Josefin Sans", "sans-serif"],
+        primary: ["Montserrat Alternates", "sans-serif"],
         secondary: ["bebas neue", "sans-serif"],
+        tetriary: ["rationale", "sans-serif"],
       },
     },
   },

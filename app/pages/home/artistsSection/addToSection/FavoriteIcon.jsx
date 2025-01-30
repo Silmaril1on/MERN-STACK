@@ -1,5 +1,7 @@
 import Spinner from "@/app/components/Spinner";
 import { setWarning } from "@/app/features/modalSlice";
+import { updateFavorites } from "@/app/features/userSlice";
+import { toggleFavorite } from "@/app/utils/api";
 import { useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,19 +20,8 @@ const FavoriteIcon = ({ item, setArtists }) => {
     }
     setLoad((prev) => ({ ...prev, [artistId]: true }));
     try {
-      const response = await fetch(
-        `http://localhost:3500/api/artists/${artistId}/favorite`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to toggle favorite");
-      }
-      const data = await response.json();
+      const data = await toggleFavorite(artistId, user.token);
+      // Update artist list
       setArtists((prevArtists) =>
         prevArtists.map((artist) =>
           artist._id === artistId
@@ -38,6 +29,8 @@ const FavoriteIcon = ({ item, setArtists }) => {
             : artist
         )
       );
+      // Update Redux state with updated favorites array
+      dispatch(updateFavorites(data.favorites));
     } catch (error) {
       console.error("Error toggling favorite:", error);
     } finally {
@@ -48,7 +41,7 @@ const FavoriteIcon = ({ item, setArtists }) => {
   return (
     <div className="h-full flex-center group-hover:text-white duration-300 w-8 absolute -left-1">
       <button
-        className=" *:text-2xl"
+        className=" *:text-xl"
         onClick={(e) => onAddToFavorites(e, item._id)}
         disabled={load[item._id]}
       >

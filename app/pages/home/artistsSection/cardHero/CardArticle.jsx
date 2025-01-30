@@ -1,11 +1,13 @@
 import Image from "next/image";
+import CardRatings from "./CardRatings";
 
-const CardArticle = ({ item }) => {
-  const { name, flag, country, city } = item;
+const CardArticle = ({ item, onRate }) => {
+  const { name, flag, country, city, stageName } = item;
+
   return (
     <article>
       <h1 className="uppercase font-secondary text-2xl group-hover:text-white duration-300">
-        {name}
+        {stageName ? stageName : name}
       </h1>
       <section className="flex flex-row">
         <div className="w-6">
@@ -15,6 +17,7 @@ const CardArticle = ({ item }) => {
           <span>{country}</span>, <span>{city}</span>
         </div>
       </section>
+      <CardRatings onRate={onRate} item={item} />
     </article>
   );
 };

@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <StoreProvider>
       <html lang="en">
-        <body className="base-padding text-white flex flex-col h-screen relative overflow-hidden">
+        <body className="text-white overflow-x-hidden flex flex-col relative">
           <Header />
           {children}
           <WarningPopUp />

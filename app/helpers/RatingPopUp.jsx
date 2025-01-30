@@ -1,11 +1,15 @@
 "use client";
+import Ratings from "../pages/home/artistsSection/ratingSection/Ratings";
 import { AnimatePresence } from "framer-motion";
 import { useSelector } from "react-redux";
-import Ratings from "../pages/home/artistsSection/ratingSection/Ratings";
 
 const RatingPopUp = () => {
-  const { rateModal } = useSelector((store) => store.modal);
-  return <AnimatePresence>{rateModal && <Ratings />}</AnimatePresence>;
+  const { selectedArtistId } = useSelector((store) => store.modal);
+  return (
+    <AnimatePresence>
+      {selectedArtistId && <Ratings artistId={selectedArtistId} />}
+    </AnimatePresence>
+  );
 };
 
 export default RatingPopUp;

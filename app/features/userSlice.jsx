@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: null,
+  userDetails: null,
 };
 
 const userSlice = createSlice({
@@ -15,9 +16,18 @@ const userSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
     },
+    getUserDetails: (state, action) => {
+      state.userDetails = action.payload;
+    },
+    updateFavorites: (state, action) => {
+      if (state.userDetails) {
+        state.userDetails.favorites = action.payload;
+      }
+    },
   },
 });
 
-export const { getUser, clearUser } = userSlice.actions;
+export const { getUser, clearUser, getUserDetails, updateFavorites } =
+  userSlice.actions;
 
 export const userReducer = userSlice.reducer;
