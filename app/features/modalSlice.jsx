@@ -5,6 +5,8 @@ const initialState = {
   error: null,
   warning: null,
   selectedArtistId: null,
+  reviewModal: null,
+  reviewsData: [],
 };
 
 const modalSlice = createSlice({
@@ -24,10 +26,22 @@ const modalSlice = createSlice({
     setSelectedArtistId: (state, action) => {
       state.selectedArtistId = action.payload;
     },
+    setReviewModal: (state, action) => {
+      state.reviewModal = action.payload;
+    },
+    setReviewsData: (state, action) => {
+      state.reviewsData = action.payload;
+    },
   },
 });
 
-export const { setLoading, setError, setWarning, setSelectedArtistId } =
-  modalSlice.actions;
+export const {
+  setLoading,
+  setError,
+  setWarning,
+  setSelectedArtistId,
+  setReviewModal,
+  setReviewsData,
+} = modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;

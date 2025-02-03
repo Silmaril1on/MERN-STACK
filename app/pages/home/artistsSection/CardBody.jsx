@@ -44,7 +44,8 @@ const CardBody = ({ artists, setArtists, itemsPerPage, currentIndex }) => {
                     setSelectedArtistId({
                       id: item._id,
                       name: item.name,
-                      metaScore: item.ratingStats.metaScore,
+                      ratingStats: item.ratingStats,
+                      stageName: item.stageName,
                     })
                   )
                 }

@@ -1,25 +1,24 @@
-import MetaScoreColors from "@/app/components/MetaScoreColors";
+import MetaScoreColors from "@/app/components/artistcomponents/MetaScoreColors";
+import { setWarning } from "@/app/features/modalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CardRatings = ({ item, onRate }) => {
-  const { ratingStats } = item;
-  const totalScore = ratingStats.totalRatings;
-  const metaScore = ratingStats.metaScore;
+  const { user } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   const onArtistRate = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!user) {
+      dispatch(setWarning(true));
+      return;
+    }
     onRate();
   };
 
   return (
     <div onClick={onArtistRate} className="relative cursor-pointer">
-      <div className="flex items-center space-x-3">
-        <MetaScoreColors metaScore={metaScore} />
-        <span className="text-sm font-light text-gray-400">
-          {totalScore > 0 ? totalScore : ""}{" "}
-          {totalScore > 0 ? "Listeners Score" : "No Ratings"}
-        </span>
-      </div>
+      <MetaScoreColors item={item} />
     </div>
   );
 };

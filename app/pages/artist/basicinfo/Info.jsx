@@ -3,21 +3,22 @@ import { setSelectedArtistId } from "@/app/features/modalSlice";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import CardRatings from "../../home/artistsSection/cardHero/CardRatings";
-import Image from "next/image";
 import AnimatedWords from "@/app/components/AnimatedWords";
 import SocialsMedia from "./SocialsMedia";
-import Link from "next/link";
+import NationalityDetails from "@/app/components/artistcomponents/NationalityDetails";
+import InfoLinks from "./InfoLinks";
 
 const Info = ({ data }) => {
   const dispatch = useDispatch();
-  const { label, name, stageName, desc, flag, country, city } = data;
+  const { label, name, stageName, desc, ratingStats, _id } = data;
 
   const onRate = () => {
     dispatch(
       setSelectedArtistId({
-        id: data._id,
-        name: data.name,
-        metaScore: data.ratingStats.metaScore,
+        id: _id,
+        name: name,
+        ratingStats: ratingStats,
+        stageName: stageName,
       })
     );
   };
@@ -28,7 +29,7 @@ const Info = ({ data }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="space-y-2 "
+        className="space-y-2"
       >
         <SocialsMedia data={data} />
         <span className="capitalize text-lightgray">{label}</span>
@@ -40,22 +41,13 @@ const Info = ({ data }) => {
             />
           </div>
         </div>
-        <div className="flex capitalize text-lightgray space-x-1 items-center">
-          <Image
-            className="w-6 mr-3"
-            src={flag}
-            width={100}
-            height={100}
-            alt="country-flag"
-          />
-          <span>{country}</span>,<span>{city}</span>
-        </div>
+        <NationalityDetails className="text-lightgray" item={data} />
         <p className=" text-sm pr-20">{desc}</p>
         <div className="w-52">
           <CardRatings item={data} onRate={onRate} />
         </div>
-        <Link href={`/artists/${data._id}/reviews`}>Go to Reviews</Link>
       </motion.div>
+      <InfoLinks data={data} />
     </div>
   );
 };

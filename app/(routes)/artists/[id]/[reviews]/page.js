@@ -1,10 +1,16 @@
 import ArtistReviews from "@/app/pages/reviews/ArtistReviews";
 
-const page = async ({ params }) => {
-  const { id } = await params;
-  console.log(id, "from reviews page");
-
-  return <ArtistReviews />;
+const fetchReviews = async (id) => {
+  const res = await fetch(`http://localhost:3500/api/artists/${id}/reviews`);
+  const data = await res.json();
+  return data;
 };
 
-export default page;
+const ReviewsPage = async ({ params }) => {
+  const { id } = await params;
+  const artistReviews = await fetchReviews(id);
+
+  return <ArtistReviews data={artistReviews} />;
+};
+
+export default ReviewsPage;

@@ -9,7 +9,7 @@ const ArtistAvatar = ({ data }) => {
       variants={zoomIn}
       initial="hidden"
       animate="visible"
-      className="w-2/4 h-[600px]"
+      className="w-2/4 h-full"
     >
       <Image
         className="w-full h-full object-cover"

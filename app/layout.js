@@ -1,5 +1,6 @@
 import "./globals.css";
 import RatingPopUp from "./helpers/RatingPopUp";
+import ReviewPopUp from "./helpers/ReviewPopUp";
 import WarningPopUp from "./helpers/WarningPopUp";
 import Footer from "./layout/footer/Footer";
 import Header from "./layout/header/Header";
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
           {children}
           <WarningPopUp />
           <RatingPopUp />
+          <ReviewPopUp />
           <Footer />
         </body>
       </html>

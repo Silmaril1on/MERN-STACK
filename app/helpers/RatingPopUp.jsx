@@ -7,7 +7,7 @@ const RatingPopUp = () => {
   const { selectedArtistId } = useSelector((store) => store.modal);
   return (
     <AnimatePresence>
-      {selectedArtistId && <Ratings artistId={selectedArtistId} />}
+      {selectedArtistId && <Ratings item={selectedArtistId} />}
     </AnimatePresence>
   );
 };

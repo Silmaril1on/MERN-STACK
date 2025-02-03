@@ -20,7 +20,7 @@ const ErrorMsg = ({ error }) => {
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="border-red-500 border font-secondary absolute right-10 bottom-10 text-red-500 text-xl font-light bg-red-400/30 px-5 py-2 flex-center space-x-3"
+          className="border-red-500 border font-secondary absolute right-10 bottom-10 text-red-500 text-xl font-light bg-red-400/30 px-5 py-2 flex-center space-x-3 z-20"
         >
           <h1>{error}</h1>
           <IoMdClose

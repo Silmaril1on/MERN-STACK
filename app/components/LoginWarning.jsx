@@ -18,7 +18,7 @@ const LoginWarning = () => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="absolute flex-center right-10 bottom-10 green-btn text-white p-5"
+      className="fixed flex-center right-10 bottom-10 green-btn text-white p-5 z-20"
     >
       <section className="flex-center flex-col mr-3">
         <div>

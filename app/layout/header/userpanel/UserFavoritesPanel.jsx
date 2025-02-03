@@ -8,10 +8,12 @@ const UserFavoritesPanel = () => {
 
   return (
     <Link href="/favorites">
-      <div className="flex-center flex-row px-2 space-x-2 ">
-        <MdFavoriteBorder size={23} />
-        <span>{userDetails?.favorites?.length}</span>
-        <h1>favorites</h1>
+      <div className="flex-center flex-row px-2 space-x-2">
+        <MdFavoriteBorder size={15} />
+        <h1 className="text-sm">Favorites</h1>
+        <span className="text-green text-[12px]">
+          {userDetails?.favorites?.length}
+        </span>
       </div>
     </Link>
   );

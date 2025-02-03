@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "@/app/components/Spinner";
 import { modalAnimation } from "@/app/animations/motionValues";
 import { setSelectedArtistId } from "@/app/features/modalSlice";
-import MetaScoreColors from "@/app/components/MetaScoreColors";
+import MetaScoreColors from "@/app/components/artistcomponents/MetaScoreColors";
 import RatioButtons from "./RatioButtons";
 import Scores from "./Scores";
 import ErrorMsg from "@/app/components/ErrorMsg";
 import PurpleSvg from "@/app/components/materials/PurpleSvg";
 
-const Ratings = ({ artistId, onClose }) => {
+const Ratings = ({ item, onClose }) => {
   const { user } = useSelector((store) => store.user);
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ const Ratings = ({ artistId, onClose }) => {
       if (!user) return;
       try {
         const response = await fetch(
-          `http://localhost:3500/api/artists/${artistId.id}/rating`,
+          `http://localhost:3500/api/artists/${item.id}/rating`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`,
@@ -41,7 +41,7 @@ const Ratings = ({ artistId, onClose }) => {
       }
     };
     fetchUserRating();
-  }, [artistId, user]);
+  }, [item, user]);
 
   const handleSubmit = async () => {
     if (!user) return;
@@ -49,7 +49,7 @@ const Ratings = ({ artistId, onClose }) => {
     setError(null);
     try {
       const response = await fetch(
-        `http://localhost:3500/api/artists/${artistId.id}/rate`,
+        `http://localhost:3500/api/artists/${item.id}/rate`,
         {
           method: "POST",
           headers: {
@@ -85,11 +85,10 @@ const Ratings = ({ artistId, onClose }) => {
         <div className="absolute top-4 right-4">
           <Close onClick={() => dispatch(setSelectedArtistId(null))} />
         </div>
-        <div className="flex flex-col items-center space-y-4 py-4 px-8 ">
-          <Scores rating={rating} name={artistId.name} />
-          <MetaScoreColors metaScore={artistId.metaScore} />
+        <div className="flex flex-col items-center space-y-4 py-4 px-8">
+          <Scores rating={rating} item={item} />
+          <MetaScoreColors item={item} />
           <RatioButtons rating={rating} setRating={setRating} />
-
           {error && <ErrorMsg>{error}</ErrorMsg>}
           <button
             className="green-btn z-[2] relative"

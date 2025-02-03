@@ -6,7 +6,7 @@ import MidSection from "./midsection/MidSection";
 const ArtistDetailsPage = ({ data }) => {
   return (
     <main className="relative">
-      <section className="flex flex-row relative px-[10%]">
+      <section className="flex flex-row h-screen max-h-[700px] relative px-[10%]">
         <LeftSlideName data={data} />
         <ArtistAvatar data={data} />
         <Info data={data} />

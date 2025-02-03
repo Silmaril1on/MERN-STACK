@@ -80,7 +80,6 @@ const ArtistForm = () => {
       });
 
       if (response.ok) {
-        // Reset form
         setName("");
         setDesc("");
         setStageName("");
@@ -239,7 +238,7 @@ const ArtistForm = () => {
         </div>
 
         {/* Profiles */}
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
           <h3 className="text-green text-3xl">Profiles</h3>
           {profiles.map((profile, index) => (
             <div key={index} className="space-y-2">

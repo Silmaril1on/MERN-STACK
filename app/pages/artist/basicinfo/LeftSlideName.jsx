@@ -14,7 +14,7 @@ const LeftSlideName = ({ data }) => {
       transition={{ duration: 1.5 }}
       className="pointer-events-none relative"
     >
-      <div className="absolute bottom-10 -left-24 flex items-center justify-center w-auto">
+      <div className="absolute bottom-[17%] -left-24 flex items-center justify-center w-auto">
         <h1
           className="uppercase text-lightgray relative w-96 -rotate-90 font-tetriary text-4xl italic"
           style={{ transformOrigin: "left bottom" }}
