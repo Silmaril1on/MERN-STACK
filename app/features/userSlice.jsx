@@ -19,15 +19,9 @@ const userSlice = createSlice({
     getUserDetails: (state, action) => {
       state.userDetails = action.payload;
     },
-    updateFavorites: (state, action) => {
-      if (state.userDetails) {
-        state.userDetails.favorites = action.payload;
-      }
-    },
   },
 });
 
-export const { getUser, clearUser, getUserDetails, updateFavorites } =
-  userSlice.actions;
+export const { getUser, clearUser, getUserDetails } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

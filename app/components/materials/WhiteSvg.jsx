@@ -10,7 +10,7 @@ const WhiteSvg = () => {
         rx="0"
       />
       <defs>
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient id="gradient" x1="0%" y1="100%">
           <stop offset="0%" stopColor="rgba(224, 238, 241, 0.10)" />
           <stop offset="50.1%" stopColor="rgba(224, 238, 241, 0.644)" />
           <stop offset="100%" stopColor="rgba(224, 238, 241, 0.10)" />

@@ -9,7 +9,7 @@ import MetaScoreColors from "@/app/components/artistcomponents/MetaScoreColors";
 import RatioButtons from "./RatioButtons";
 import Scores from "./Scores";
 import ErrorMsg from "@/app/components/ErrorMsg";
-import PurpleSvg from "@/app/components/materials/PurpleSvg";
+import WhiteSvg from "@/app/components/materials/WhiteSvg";
 
 const Ratings = ({ item, onClose }) => {
   const { user } = useSelector((store) => store.user);
@@ -81,7 +81,7 @@ const Ratings = ({ item, onClose }) => {
       className="fixed inset-0 bg-black/60 backdrop-blur-sm flex-center z-50 font-secondary"
     >
       <div className="bg-blue/40 backdrop-blur-3xl p-8 rounded-lg relative">
-        <PurpleSvg />
+        <WhiteSvg />
         <div className="absolute top-4 right-4">
           <Close onClick={() => dispatch(setSelectedArtistId(null))} />
         </div>

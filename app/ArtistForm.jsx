@@ -1,6 +1,6 @@
 "use client";
-
 import { useState } from "react";
+import { IoMdAdd, IoMdClose } from "react-icons/io";
 
 const ArtistForm = () => {
   const [name, setName] = useState("");
@@ -16,6 +16,8 @@ const ArtistForm = () => {
   const [profiles, setProfiles] = useState([{ name: "", link: "" }]);
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [gallery, setGallery] = useState([]);
+  const [galleryPreviews, setGalleryPreviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sex, setSex] = useState("");
 
@@ -51,6 +53,35 @@ const ArtistForm = () => {
     }
   };
 
+  const handleGalleryImageChange = async (e) => {
+    const files = Array.from(e.target.files);
+    if (gallery.length + files.length > 6) {
+      alert("Maximum 6 images allowed in gallery");
+      return;
+    }
+
+    const newImages = [];
+    const newPreviews = [];
+
+    for (const file of files) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        newImages.push(reader.result);
+        newPreviews.push(reader.result);
+        if (newImages.length === files.length) {
+          setGallery([...gallery, ...newImages]);
+          setGalleryPreviews([...galleryPreviews, ...newPreviews]);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeGalleryImage = (index) => {
+    setGallery(gallery.filter((_, i) => i !== index));
+    setGalleryPreviews(galleryPreviews.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -69,6 +100,8 @@ const ArtistForm = () => {
         genre: genres,
         profiles,
         image,
+        gallery,
+        sex,
       };
 
       const response = await fetch("http://localhost:3500/api/artists", {
@@ -93,6 +126,9 @@ const ArtistForm = () => {
         setProfiles([{ name: "", link: "" }]);
         setImage(null);
         setImagePreview(null);
+        setGallery([]);
+        setGalleryPreviews([]);
+        setSex("");
         console.log("New artist added", await response.json());
       } else {
         const error = await response.json();
@@ -109,7 +145,7 @@ const ArtistForm = () => {
     <div className="flex-center flex-col bg-blue p-5">
       <h2 className="text-3xl font-bold">Create Artist</h2>
       <form className="form-container" onSubmit={handleSubmit}>
-        {/* Artist Name */}
+        {/* Artist Image */}
         <div className="w-full space-y-2">
           <label className="block text-green">Artist Image</label>
           <input
@@ -129,6 +165,37 @@ const ArtistForm = () => {
           )}
         </div>
 
+        {/* Gallery Section */}
+        <div className="w-full space-y-2">
+          <label className="block text-green">Gallery Images (Max 6)</label>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleGalleryImageChange}
+            className="w-full"
+            disabled={gallery.length >= 6}
+          />
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            {galleryPreviews.map((preview, index) => (
+              <div key={index} className="relative">
+                <img
+                  src={preview}
+                  alt={`Gallery ${index + 1}`}
+                  className="w-full h-24 object-cover rounded"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeGalleryImage(index)}
+                  className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1 text-white hover:bg-red-600"
+                >
+                  <IoMdClose size={16} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <input
           id="artist name"
           name="artist name"
@@ -145,7 +212,7 @@ const ArtistForm = () => {
           value={sex}
           onChange={(e) => setSex(e.target.value)}
         />
-        {/* Artist Description */}
+        {/* Rest of the form fields */}
         <input
           id="desc"
           name="desc"
@@ -154,7 +221,6 @@ const ArtistForm = () => {
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
         />
-        {/* Stage Name */}
         <input
           id="stage name"
           name="stage name"
@@ -163,7 +229,6 @@ const ArtistForm = () => {
           value={stageName}
           onChange={(e) => setStageName(e.target.value)}
         />
-        {/* Country */}
         <input
           id="country"
           name="country"
@@ -172,7 +237,6 @@ const ArtistForm = () => {
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         />
-        {/* City */}
         <input
           id="city"
           name="city"
@@ -181,7 +245,6 @@ const ArtistForm = () => {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        {/* Label */}
         <input
           id="lable"
           name="label"
@@ -190,7 +253,6 @@ const ArtistForm = () => {
           value={label}
           onChange={(e) => setLabel(e.target.value)}
         />
-        {/* Biography */}
         <input
           id="bio"
           name="bio"
@@ -207,7 +269,6 @@ const ArtistForm = () => {
           value={flag}
           onChange={(e) => setFlag(e.target.value)}
         />
-        {/* Birth Date */}
         <input
           id="birth"
           name="birth"

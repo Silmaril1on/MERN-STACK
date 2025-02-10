@@ -2,6 +2,7 @@ import Info from "./basicinfo/Info";
 import ArtistAvatar from "./basicinfo/ArtistAvatar";
 import LeftSlideName from "./basicinfo/LeftSlideName";
 import MidSection from "./midsection/MidSection";
+import Gallery from "./artistgallery/Gallery";
 
 const ArtistDetailsPage = ({ data }) => {
   return (
@@ -12,6 +13,7 @@ const ArtistDetailsPage = ({ data }) => {
         <Info data={data} />
       </section>
       <MidSection data={data} />
+      <Gallery data={data} />
     </main>
   );
 };

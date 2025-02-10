@@ -23,7 +23,7 @@ const UsernamePanel = () => {
       }
     };
     userDetails();
-  }, [dispatch, user.token]);
+  }, [dispatch, user]);
 
   return (
     <div className="flex-center space-x-4  px-2">

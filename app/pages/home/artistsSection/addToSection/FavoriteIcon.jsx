@@ -1,54 +1,74 @@
-import Spinner from "@/app/components/Spinner";
-import { setWarning } from "@/app/features/modalSlice";
-import { updateFavorites } from "@/app/features/userSlice";
-import { toggleFavorite } from "@/app/utils/api";
-import { useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { setWarning } from "@/app/features/modalSlice";
+import { getUserDetails } from "@/app/features/userSlice";
+import { fetchUserDetails, toggleFavorite } from "@/app/utils/api";
+import Spinner from "@/app/components/Spinner";
 
-const FavoriteIcon = ({ item, setArtists }) => {
+const FavoriteIcon = ({ item }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.user);
-  const [load, setLoad] = useState({});
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
 
-  const onAddToFavorites = async (e, artistId) => {
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      if (!user) {
+        setIsFavorite(false);
+        setIsFetching(false);
+        return;
+      }
+      try {
+        setIsFetching(true);
+        const userData = await fetchUserDetails(user.token);
+        setIsFavorite(userData.favorites.includes(item._id));
+      } catch (error) {
+        console.error("Error checking favorite status:", error);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+    checkFavoriteStatus();
+  }, [user, item._id]);
+
+  const onAddToFavorites = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (!user) {
       dispatch(setWarning(true));
       return;
     }
-    setLoad((prev) => ({ ...prev, [artistId]: true }));
+    if (isLoading) return;
+    setIsLoading(true);
     try {
-      const data = await toggleFavorite(artistId, user.token);
-      // Update artist list
-      setArtists((prevArtists) =>
-        prevArtists.map((artist) =>
-          artist._id === artistId
-            ? { ...artist, isFavorite: data.isFavorite }
-            : artist
-        )
-      );
-      // Update Redux state with updated favorites array
-      dispatch(updateFavorites(data.favorites));
+      const data = await toggleFavorite(item._id, user.token);
+      setIsFavorite(data.isFavorite);
+      const userData = await fetchUserDetails(user.token);
+      dispatch(getUserDetails(userData));
     } catch (error) {
       console.error("Error toggling favorite:", error);
     } finally {
-      setLoad((prev) => ({ ...prev, [artistId]: false }));
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="h-full flex-center group-hover:text-white duration-300 w-8 absolute -left-1">
+    <div className="h-full flex-center group-hover:text-white duration-300">
       <button
-        className=" *:text-xl"
-        onClick={(e) => onAddToFavorites(e, item._id)}
-        disabled={load[item._id]}
+        className="*:text-xl flex-center"
+        onClick={onAddToFavorites}
+        disabled={isLoading}
       >
-        {load[item._id] ? (
+        {isFetching ? (
           <Spinner />
+        ) : isLoading ? (
+          <Spinner />
+        ) : isFavorite ? (
+          <MdFavorite />
         ) : (
-          <>{item.isFavorite ? <MdFavorite /> : <MdFavoriteBorder />}</>
+          <MdFavoriteBorder />
         )}
       </button>
     </div>

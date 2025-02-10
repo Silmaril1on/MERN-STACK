@@ -1,60 +1,48 @@
-import PurpleSvg from "@/app/components/materials/PurpleSvg";
 import Link from "next/link";
 import CardImage from "./cardHero/CardImage";
 import CardArticle from "./cardHero/CardArticle";
 import AddToSection from "./addToSection/AddToSection";
-import { setSelectedArtistId } from "@/app/features/modalSlice";
 import { useDispatch } from "react-redux";
+import WhiteSvg from "@/app/components/materials/WhiteSvg";
+import { motion } from "framer-motion";
+import { forChildren, forParent } from "@/app/animations/motionValues";
+import {
+  cardStyle,
+  handleRate,
+  innerStyles,
+  wrapperStyle,
+} from "@/app/utils/cardUtils";
 
-const CardBody = ({ artists, setArtists, itemsPerPage, currentIndex }) => {
+const CardBody = ({ artists, itemsPerPage, currentIndex }) => {
   const dispatch = useDispatch();
-  const cardWidth = 236;
-  const cardMargin = 8;
+  const innerContainerProps = innerStyles(artists, currentIndex);
 
   return (
-    <div
-      className="overflow-hidden relative flex items-center"
-      style={{ width: `${(cardWidth + 2 * cardMargin) * itemsPerPage}px` }}
-    >
-      <div
-        className="flex transition-transform duration-500 ease-in-out relative z-[5]"
-        style={{
-          transform: `translateX(-${
-            currentIndex * (cardWidth + 2 * cardMargin)
-          }px)`,
-          width: `${(cardWidth + 2 * cardMargin) * artists?.length}px`,
-        }}
+    <div style={wrapperStyle(itemsPerPage)}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        whileInView="viisible"
+        variants={forParent}
+        viewport={{ once: true }}
+        {...innerContainerProps}
       >
         {artists?.map((item) => (
-          <Link
+          <motion.div
             key={item._id}
-            href={`/artists/${item._id}`}
-            style={{
-              width: `${cardWidth}px`,
-              margin: `0 ${cardMargin}px`,
-            }}
+            style={cardStyle}
+            variants={forChildren}
+            className="text-lightgray group bg-neutral-900 relative p-1 flex-center"
           >
-            <div className="text-lightgray group bg-neutral-900 relative p-1">
-              <PurpleSvg />
+            <Link href={`/artists/${item._id}`}>
+              <WhiteSvg />
               <CardImage item={item} />
-              <CardArticle
-                item={item}
-                onRate={() =>
-                  dispatch(
-                    setSelectedArtistId({
-                      id: item._id,
-                      name: item.name,
-                      ratingStats: item.ratingStats,
-                      stageName: item.stageName,
-                    })
-                  )
-                }
-              />
-              <AddToSection item={item} setArtists={setArtists} />
-            </div>
-          </Link>
+              <CardArticle item={item} onRate={handleRate(dispatch, item)} />
+              <AddToSection item={item} />
+            </Link>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

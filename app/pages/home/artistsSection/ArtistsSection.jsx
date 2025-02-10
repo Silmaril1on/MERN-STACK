@@ -1,13 +1,11 @@
 "use client";
-import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import ContainerButtons from "./SliderButtons";
 import CardBody from "./CardBody";
 import Spinner from "@/app/components/Spinner";
 
 const ArtistsSection = () => {
-  const { user } = useSelector((store) => store.user);
-  const [artists, setArtists] = useState(null);
+  const [artists, setArtists] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,16 +15,11 @@ const ArtistsSection = () => {
     const fetchArtists = async () => {
       setLoading(true);
       setError(null);
-      const url = "http://localhost:3500/api/artists";
-      const options = user
-        ? {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        : {};
       try {
-        const response = await fetch(url, options);
+        const response = await fetch("http://localhost:3500/api/artists/", {
+          cache: "no-store",
+        });
+
         if (!response.ok) {
           throw new Error("Failed to fetch artists");
         }
@@ -38,15 +31,18 @@ const ArtistsSection = () => {
         setLoading(false);
       }
     };
+
     fetchArtists();
-  }, [user]);
+  }, []);
 
   if (error) {
-    return <h1>error happened</h1>;
+    return <h1>Error: {error}</h1>;
   }
 
+  console.log(artists);
+
   return (
-    <div className="h-[500px] base-padding">
+    <div className="h-[500px] base-padding ">
       <div className="w-full font-secondary text-lightgray py-3">
         <h1 className="text-2xl">Browse Artists</h1>
       </div>
@@ -58,7 +54,6 @@ const ArtistsSection = () => {
             artists={artists}
             itemsPerPage={itemsPerPage}
             currentIndex={currentIndex}
-            setArtists={setArtists}
           />
           <ContainerButtons
             artists={artists}

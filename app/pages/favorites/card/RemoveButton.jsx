@@ -1,6 +1,6 @@
 import Spinner from "@/app/components/Spinner";
-import { updateFavorites } from "@/app/features/userSlice";
-import { toggleFavorite } from "@/app/utils/api";
+import { getUserDetails } from "@/app/features/userSlice";
+import { fetchUserDetails, toggleFavorite } from "@/app/utils/api";
 import { useState } from "react";
 import { MdFavorite } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,9 +15,10 @@ export const RemoveButton = ({ setFavorites, item }) => {
     e.stopPropagation();
     setLoad((prev) => ({ ...prev, [artistId]: true }));
     try {
-      const data = await toggleFavorite(artistId, user.token);
+      await toggleFavorite(artistId, user.token);
       setFavorites((prev) => prev.filter((artist) => artist._id !== artistId));
-      dispatch(updateFavorites(data.favorites));
+      const userResponse = await fetchUserDetails(user.token);
+      dispatch(getUserDetails(userResponse));
     } catch (error) {
       console.error("Error removing favorite:", error);
     } finally {

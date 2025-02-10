@@ -1,4 +1,21 @@
 // Fetch All Artists
+export const fetchAllArtists = async (token) => {
+  try {
+    const response = await fetch("http://localhost:3500/api/artists", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        cache: "no-store",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch favorites");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching favorites:", error);
+    throw error;
+  }
+};
 
 // Fetch User's Favorite Artists
 export const fetchUserFavorites = async (token) => {
@@ -18,6 +35,29 @@ export const fetchUserFavorites = async (token) => {
   } catch (error) {
     console.error("Error fetching favorites:", error);
     throw error;
+  }
+};
+
+// Fetch recent favorite artists
+export const fetchRecentFavorites = async (token) => {
+  try {
+    const response = await fetch(
+      "http://localhost:3500/api/artists/favorites/recentfavorites",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include token if required
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch recent favorites");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching recent favorites:", error.message);
+    return null; // Return null to handle errors gracefully
   }
 };
 

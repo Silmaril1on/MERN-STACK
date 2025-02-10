@@ -35,16 +35,25 @@ body {
     @apply bg-green/10 text-green placeholder:text-green placeholder:opacity-50 outline-none border border-green p-2 w-full;
   }
   .green-btn {
-    @apply border border-green bg-green/20 px-5 py-1 text-green hover:bg-green/40 duration-300;
+    @apply border border-green bg-green/20 px-5 py-1 text-green hover:bg-green/30 duration-300;
   }
   .purple-btn {
-    @apply border border-purple bg-purple/20 px-5 py-1 text-purple hover:bg-purple/40 duration-300;
+    @apply border border-purple bg-purple/20 px-5 py-1 text-purple hover:bg-purple/30 duration-300;
   }
   .pink-btn {
-    @apply border border-pink bg-pink/20 px-5 py-1 text-pink hover:bg-pink/40 duration-300;
+    @apply border border-pink bg-pink/20 px-5 py-1 text-pink hover:bg-pink/30 duration-300;
+  }
+  .hover-white {
+    @apply text-lightgray hover:text-white duration-300;
   }
   .link-green {
     @apply text-green font-bold hover:underline;
+  }
+  .hover-image {
+    @apply brightness-90 hover:brightness-100 duration-300;
+  }
+  .content-bg {
+    @apply bg-neutral-900/50 border shadow-[0px_0px_10px_1px] shadow-neutral-700 border-lightgray/20 rounded-sm;
   }
 }
 

@@ -1,9 +1,8 @@
 import Image from "next/image";
-import React, { useState } from "react";
 import { RemoveButton } from "./RemoveButton";
 import CardDetails from "./CardDetails";
 import Link from "next/link";
-import PurpleSvg from "@/app/components/materials/PurpleSvg";
+import WhiteSvg from "@/app/components/materials/WhiteSvg";
 
 const Card = ({ favorites, setFavorites }) => {
   return (
@@ -11,7 +10,7 @@ const Card = ({ favorites, setFavorites }) => {
       {favorites.map((item) => (
         <Link key={item._id} href={`/artists/${item._id}`}>
           <div className="flex flex-row group bg-neutral-900 relative">
-            <PurpleSvg />
+            <WhiteSvg />
             <div className="w-[40%] h-[200px] overflow-hidden m-1">
               <Image
                 src={item.image}

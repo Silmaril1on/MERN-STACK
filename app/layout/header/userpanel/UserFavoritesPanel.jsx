@@ -12,7 +12,7 @@ const UserFavoritesPanel = () => {
         <MdFavoriteBorder size={15} />
         <h1 className="text-sm">Favorites</h1>
         <span className="text-green text-[12px]">
-          {userDetails?.favorites?.length}
+          {userDetails?.favorites?.length || 0}
         </span>
       </div>
     </Link>

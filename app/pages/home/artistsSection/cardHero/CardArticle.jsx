@@ -4,7 +4,7 @@ import NationalityDetails from "@/app/components/artistcomponents/NationalityDet
 
 const CardArticle = ({ item, onRate }) => {
   return (
-    <article className="space-y-1">
+    <article className="space-y-1 w-full">
       <StageName
         className="text-2xl text-lightgray group-hover:text-white duration-300 leading-6"
         item={item}

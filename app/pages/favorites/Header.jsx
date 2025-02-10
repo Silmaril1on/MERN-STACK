@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const { userDetails } = useSelector((store) => store.user);
-  const favLength = userDetails.favorites.length;
+  const favLength = userDetails?.favorites?.length;
 
   return (
-    <div className="">
+    <div>
       <h1 className="text-2xl capitalize">
         {userDetails.username}'s Favorites Artists
       </h1>
