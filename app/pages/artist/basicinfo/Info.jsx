@@ -24,8 +24,6 @@ const Info = ({ data }) => {
     );
   };
 
-  console.log(displayName);
-
   return (
     <div className="w-2/4 relative flex flex-col justify-center pl-8 bg-neutral-900">
       <motion.div

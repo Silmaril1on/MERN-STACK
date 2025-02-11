@@ -1,11 +1,18 @@
-import UserRecentFavorites from "./sections/UserRecentFavorites";
-import UserRecentRatings from "./sections/UserRecentRatings";
+import UserRecents from "./UserRecents";
+import { fetchRecentFavorites, fetchRecentRates } from "@/app/utils/api";
 
 const ReviewSide = () => {
   return (
     <div className="w-2/5 space-y-4">
-      <UserRecentFavorites />
-      <UserRecentRatings />
+      <UserRecents
+        title="Your Recent Favorites"
+        fetchDataFn={fetchRecentFavorites}
+      />
+      <UserRecents
+        showRating
+        title="Your Recent Favorites"
+        fetchDataFn={fetchRecentRates}
+      />
     </div>
   );
 };

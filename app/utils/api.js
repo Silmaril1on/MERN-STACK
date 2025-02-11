@@ -20,14 +20,11 @@ export const fetchAllArtists = async (token) => {
 // Fetch User's Favorite Artists
 export const fetchUserFavorites = async (token) => {
   try {
-    const response = await fetch(
-      "http://localhost:3500/api/artists/favorites",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const response = await fetch("http://localhost:3500/api/user/favorites", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!response.ok) {
       throw new Error("Failed to fetch favorites");
     }
@@ -42,7 +39,7 @@ export const fetchUserFavorites = async (token) => {
 export const fetchRecentFavorites = async (token) => {
   try {
     const response = await fetch(
-      "http://localhost:3500/api/artists/favorites/recentfavorites",
+      "http://localhost:3500/api/user/recentfavorites",
       {
         method: "GET",
         headers: {
@@ -61,10 +58,33 @@ export const fetchRecentFavorites = async (token) => {
   }
 };
 
+// Fetch recent rated artists
+export const fetchRecentRates = async (token) => {
+  try {
+    const response = await fetch(
+      "http://localhost:3500/api/user/recentlyrated",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch recent favorites");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching recent favorites:", error.message);
+    return null;
+  }
+};
+
 export const toggleFavorite = async (artistId, token) => {
   try {
     const response = await fetch(
-      `http://localhost:3500/api/artists/${artistId}/favorite`,
+      `http://localhost:3500/api/user/${artistId}/favorite`,
       {
         method: "POST",
         headers: {

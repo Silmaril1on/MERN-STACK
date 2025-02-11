@@ -4,3 +4,7 @@ export const capitalizeTitle = (title) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
 };
+
+export const truncateString = (str, maxLength = 14) => {
+  return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
+};

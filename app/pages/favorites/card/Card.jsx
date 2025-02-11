@@ -11,7 +11,7 @@ const Card = ({ favorites, setFavorites }) => {
         <Link key={item._id} href={`/artists/${item._id}`}>
           <div className="flex flex-row group bg-neutral-900 relative">
             <WhiteSvg />
-            <div className="w-[40%] h-[200px] overflow-hidden m-1">
+            <div className="w-[35%] h-[100px] overflow-hidden m-1">
               <Image
                 src={item.image}
                 alt={item.name}
@@ -22,7 +22,7 @@ const Card = ({ favorites, setFavorites }) => {
                 className="w-full h-full object-cover group-hover:scale-105 duration-300"
               />
             </div>
-            <div className="grow p-2 relative w-3/5">
+            <div className="grow py-2 px-1 relative ">
               <CardDetails item={item} />
               <RemoveButton item={item} setFavorites={setFavorites} />
             </div>

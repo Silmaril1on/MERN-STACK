@@ -39,8 +39,6 @@ const ArtistsSection = () => {
     return <h1>Error: {error}</h1>;
   }
 
-  console.log(artists);
-
   return (
     <div className="h-[500px] base-padding ">
       <div className="w-full font-secondary text-lightgray py-3">
