@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Close from "./Close";
+import Close from "./uicomponents/Close";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { setWarning } from "../features/modalSlice";

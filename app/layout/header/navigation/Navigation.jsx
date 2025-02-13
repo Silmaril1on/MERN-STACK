@@ -1,6 +1,5 @@
 import Logo from "@/app/components/Logo";
-import LinkComponent from "@/app/components/materials/LinkComponent";
-import Link from "next/link";
+import LinkComponent from "@/app/components/uicomponents/LinkComponent";
 import { TbVinyl } from "react-icons/tb";
 import { MdFestival } from "react-icons/md";
 
@@ -18,9 +17,9 @@ const Navigation = () => {
         <span>Festivals</span>
       </LinkComponent>
 
-      <Link className="purple-btn" href="/createdj">
+      {/* <Link className="purple-btn" href="/createdj">
         Create DJ
-      </Link>
+      </Link> */}
     </div>
   );
 };

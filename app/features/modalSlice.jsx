@@ -7,6 +7,7 @@ const initialState = {
   selectedArtistId: null,
   reviewModal: null,
   reviewsData: [],
+  profileToggle: true,
 };
 
 const modalSlice = createSlice({
@@ -31,6 +32,9 @@ const modalSlice = createSlice({
     setReviewsData: (state, action) => {
       state.reviewsData = action.payload;
     },
+    setProfileToggle: (state, action) => {
+      state.profileToggle = action.payload;
+    },
   },
 });
 
@@ -41,6 +45,7 @@ export const {
   setSelectedArtistId,
   setReviewModal,
   setReviewsData,
+  setProfileToggle,
 } = modalSlice.actions;
 
 export const modalReducer = modalSlice.reducer;

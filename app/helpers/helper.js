@@ -8,3 +8,23 @@ export const capitalizeTitle = (title) => {
 export const truncateString = (str, maxLength = 14) => {
   return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
 };
+
+export const formatBirthdate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+};
+
+export const truncateBio = (text, limit) => {
+  if (text.length <= limit) return text;
+  return text.slice(0, limit) + "...";
+};
+
+export const capitalizeAfterPunctuation = (text) => {
+  return text.replace(/(?:^|\.\s|\n)([a-z])/g, (match, p1) =>
+    match.toUpperCase()
+  );
+};

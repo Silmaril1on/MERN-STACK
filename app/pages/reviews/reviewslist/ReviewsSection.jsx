@@ -26,7 +26,7 @@ const ReviewsSection = ({ data }) => {
   }, [data._id]);
 
   return (
-    <div className="bg-neutral-800 text-lightgray px-[10%] base-padding">
+    <div className="bg-neutral-900 text-lightgray px-[10%] base-padding">
       <Header data={reviewsData} />
       <div className="flex flex-row p-2 space-x-2">
         <ReviewsList reviewsData={reviewsData} data={data} />

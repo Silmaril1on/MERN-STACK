@@ -3,7 +3,6 @@ import CardImage from "./cardHero/CardImage";
 import CardArticle from "./cardHero/CardArticle";
 import AddToSection from "./addToSection/AddToSection";
 import { useDispatch } from "react-redux";
-import WhiteSvg from "@/app/components/materials/WhiteSvg";
 import { motion } from "framer-motion";
 import { forChildren, forParent } from "@/app/animations/motionValues";
 import {
@@ -12,6 +11,7 @@ import {
   innerStyles,
   wrapperStyle,
 } from "@/app/utils/cardUtils";
+import BorderSvg from "@/app/components/materialcomponents/WhiteSvg";
 
 const CardBody = ({ artists, itemsPerPage, currentIndex }) => {
   const dispatch = useDispatch();
@@ -32,10 +32,10 @@ const CardBody = ({ artists, itemsPerPage, currentIndex }) => {
             key={item._id}
             style={cardStyle}
             variants={forChildren}
-            className="text-lightgray group bg-neutral-900 relative p-1 flex-center"
+            className="text-lightgray group bg-neutral-900 relative p-1 flex-center "
           >
             <Link href={`/artists/${item._id}`}>
-              <WhiteSvg />
+              <BorderSvg />
               <CardImage item={item} />
               <CardArticle item={item} onRate={handleRate(dispatch, item)} />
               <AddToSection item={item} />

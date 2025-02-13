@@ -6,7 +6,8 @@ const CardArticle = ({ item, onRate }) => {
   return (
     <article className="space-y-1 w-full">
       <StageName
-        className="text-2xl text-lightgray group-hover:text-white duration-300 leading-6"
+        size={20}
+        className=" text-lightgray group-hover:text-white duration-300 leading-5 pt-1"
         item={item}
       />
       <NationalityDetails className="text-[12px]" item={item} />

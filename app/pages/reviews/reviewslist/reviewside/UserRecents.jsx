@@ -7,6 +7,10 @@ import Spinner from "@/app/components/Spinner";
 import { motion } from "framer-motion";
 import { staggerOpacity } from "@/app/animations/motionValues";
 import { truncateString } from "@/app/helpers/helper";
+import Spotlight from "@/app/components/materialcomponents/Spotlight";
+import Title from "@/app/components/uicomponents/Title";
+import PurpleSvg from "@/app/components/materialcomponents/PurpleSvg";
+import WhiteSvg from "@/app/components/materialcomponents/WhiteSvg";
 
 const UserRecents = ({ title, fetchDataFn, showRating = false }) => {
   const [items, setItems] = useState(null);
@@ -30,8 +34,9 @@ const UserRecents = ({ title, fetchDataFn, showRating = false }) => {
   }, [user?.token, fetchDataFn, title]);
 
   return (
-    <div className="px-5 content-bg py-3">
-      <h1 className="capitalize text-2xl font-tetriary">{title}</h1>
+    <Spotlight className="px-5 relative bg-black py-3 shadow-sm shadow-neutral-600">
+      <WhiteSvg />
+      <Title size={20}>{title}</Title>
       {loading ? (
         <Spinner />
       ) : (
@@ -51,7 +56,7 @@ const UserRecents = ({ title, fetchDataFn, showRating = false }) => {
                   <motion.div
                     key={_id}
                     variants={staggerOpacity}
-                    className="flex-center flex-col relative"
+                    className="*:flex-center *:flex-col relative"
                   >
                     <Link href={`/artists/${_id}`}>
                       <Image
@@ -59,12 +64,10 @@ const UserRecents = ({ title, fetchDataFn, showRating = false }) => {
                         height={150}
                         alt={name}
                         src={image}
-                        className="w-20 h-20 object-cover rounded-full hover-image"
+                        className="w-20 h-20 mb-1 object-cover rounded-full hover-image"
                       />
                       {showRating && <RatingIndex rating={rating} />}
-                      <h1 className="text-sm text-center font-tetriary mt-1">
-                        {truncateString(displayName)}
-                      </h1>
+                      <Title size={5}>{truncateString(displayName)}</Title>
                     </Link>
                   </motion.div>
                 );
@@ -77,7 +80,7 @@ const UserRecents = ({ title, fetchDataFn, showRating = false }) => {
           )}
         </>
       )}
-    </div>
+    </Spotlight>
   );
 };
 

@@ -1,38 +1,35 @@
-import HorizontalLine from "@/app/components/materials/HorizontalLine";
-import React from "react";
 import ReviewLikeButtons from "./ReviewLikeButtons";
+import HorizontalLine from "@/app/components/materialcomponents/HorizontalLine";
+import Spotlight from "@/app/components/materialcomponents/Spotlight";
+import Title from "@/app/components/uicomponents/Title";
+import Paragraph from "@/app/components/uicomponents/Paragraph";
+import WhiteSvg from "@/app/components/materialcomponents/WhiteSvg";
 
 const List = ({ reviewsData, data }) => {
-  const capitalizeAfterPunctuation = (text) => {
-    return text.replace(/(?:^|\.\s|\n)([a-z])/g, (match, p1) =>
-      match.toUpperCase()
-    );
-  };
-
   return (
     <>
       {reviewsData.map((item) => {
         const { username, comment, header, createdAt, _id } = item;
         return (
-          <div className="relative space-y-3 content-bg px-4 py-3" key={_id}>
-            <article className="relative py-3 flex-center flex-col">
-              <HorizontalLine className="w-2/4 absolute bottom-0" />
-              <h1 className="font-bold my-2 uppercase font-tetriary text-white text-2xl">
-                {header}
-              </h1>
-              <p className="text-[12px] whitespace-pre-wrap w-full">
-                {capitalizeAfterPunctuation(comment)}
-              </p>
-              <ReviewLikeButtons review={item} artistId={data._id} />
-            </article>
-            <article className="flex-center flex-row space-x-3">
-              <h1 className="text-white font-tetriary capitalize">
-                {username}
-              </h1>
-              <span>•</span>
-              <span className="text-sm">{createdAt.split("T")[0]}</span>
-            </article>
-          </div>
+          <Spotlight
+            key={_id}
+            className="relative bg-black w-full shadow-sm shadow-neutral-600"
+          >
+            <WhiteSvg />
+            <div className="relative space-y-3 px-4 py-3" key={_id}>
+              <article className="relative py-3 flex-center text-white flex-col space-y-3">
+                <Title size={30}>{header}</Title>
+                <Paragraph size={2}>{comment}</Paragraph>
+                <HorizontalLine className="w-2/4 absolute bottom-0" />
+                <ReviewLikeButtons review={item} artistId={data._id} />
+              </article>
+              <article className="flex-center flex-row space-x-3">
+                <Title size={10}>{username}</Title>
+                <span>•</span>
+                <Paragraph size={1}>{createdAt.split("T")[0]}</Paragraph>
+              </article>
+            </div>
+          </Spotlight>
         );
       })}
     </>

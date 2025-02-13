@@ -1,4 +1,4 @@
-"use client";
+import Button from "@/app/components/uicomponents/Button";
 import { setReviewModal, setWarning } from "@/app/features/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,9 +18,9 @@ const AddReview = ({ data }) => {
 
   return (
     <div>
-      <button onClick={handleReviewForm} className="green-btn">
+      <Button onClick={handleReviewForm} className="purple-btn">
         Add Your Review
-      </button>
+      </Button>
     </div>
   );
 };

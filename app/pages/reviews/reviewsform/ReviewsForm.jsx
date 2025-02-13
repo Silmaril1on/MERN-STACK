@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { setReviewModal } from "@/app/features/modalSlice";
 import { useDispatch } from "react-redux";
 import { modalAnimation } from "@/app/animations/motionValues";
-import Close from "@/app/components/Close";
+import Close from "@/app/components/uicomponents/Close";
 import ReviewInputs from "./ReviewInputs";
-import WhiteSvg from "@/app/components/materials/WhiteSvg";
+import PurpleSvg from "@/app/components/materialcomponents/PurpleSvg";
 
 const ReviewsForm = ({ item }) => {
   const dispatch = useDispatch();
@@ -18,14 +18,15 @@ const ReviewsForm = ({ item }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="fixed inset-0 bg-black/80"
+      className="fixed inset-0 bg-black/70"
     >
       <div className="relative flex-center h-full backdrop-blur-lg">
-        <div className="absolute right-5 top-5">
-          <Close onClick={() => dispatch(setReviewModal(null))} />
-        </div>
         <div className="py-10 px-20 relative bg-blue/40">
-          <WhiteSvg />
+          <Close
+            className="text-purple absolute z-[3] top-2 right-2"
+            onClick={() => dispatch(setReviewModal(null))}
+          />
+          <PurpleSvg />
           <ReviewInputs item={item} setError={setError} />
         </div>
         {error && <ErrorMsg error={error} setError={setError} />}

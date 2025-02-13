@@ -1,9 +1,9 @@
 import { IoMdClose } from "react-icons/io";
 
-const Close = ({ onClick }) => {
+const Close = ({ onClick, className }) => {
   return (
     <div
-      className="cursor-pointer text-2xl hover:rotate-90 duration-300 text-green"
+      className={`cursor-pointer text-2xl hover:rotate-90 duration-300 ${className}`}
       onClick={onClick}
     >
       <IoMdClose />

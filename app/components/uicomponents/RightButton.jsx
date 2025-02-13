@@ -1,5 +1,5 @@
 import { FaCaretRight } from "react-icons/fa";
-import WhiteSvg from "./materials/WhiteSvg";
+import WhiteSvg from "../materialcomponents/WhiteSvg";
 
 const RightButton = ({ onClick }) => {
   return (

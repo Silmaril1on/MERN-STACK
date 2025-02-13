@@ -1,9 +1,15 @@
-const StageName = ({ item, className }) => {
+import Title from "../uicomponents/Title";
+
+const StageName = ({ item, className, size }) => {
   const { stageName, name } = item;
 
   const displayName = stageName || name;
 
-  return <h1 className={`font-secondary ${className}`}>{displayName}</h1>;
+  return (
+    <Title size={size} className={className}>
+      {displayName}
+    </Title>
+  );
 };
 
 export default StageName;

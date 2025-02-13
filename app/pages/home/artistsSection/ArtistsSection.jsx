@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import ContainerButtons from "./SliderButtons";
 import CardBody from "./CardBody";
 import Spinner from "@/app/components/Spinner";
+import Title from "@/app/components/uicomponents/Title";
+import Headline from "@/app/components/uicomponents/Headline";
 
 const ArtistsSection = () => {
   const [artists, setArtists] = useState([]);
@@ -40,9 +42,9 @@ const ArtistsSection = () => {
   }
 
   return (
-    <div className="h-[500px] base-padding ">
-      <div className="w-full font-secondary text-lightgray py-3">
-        <h1 className="text-2xl">Browse Artists</h1>
+    <div className="h-[500px] base-padding">
+      <div className="w-full text-lightgray py-3">
+        <Headline>BROWSE ARTISTS</Headline>
       </div>
       {loading ? (
         <Spinner />

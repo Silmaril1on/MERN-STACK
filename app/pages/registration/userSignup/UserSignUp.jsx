@@ -4,7 +4,7 @@ import { useSignUp } from "@/app/hooks/useSignUp";
 import { useRouter } from "next/navigation";
 import { setError } from "@/app/features/modalSlice";
 import { useDispatch } from "react-redux";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/uicomponents/Button";
 import Logo from "@/app/components/Logo";
 import SignUpHeader from "./SignUpHeader";
 import ErrorMsg from "@/app/components/ErrorMsg";

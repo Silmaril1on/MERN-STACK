@@ -14,7 +14,7 @@
 
 body {
   background: #000;
-  font-family: montserrat alternates;
+  font-family: rationale;
 }
 
 @layer components {
@@ -32,7 +32,19 @@ body {
   }
   input,
   textarea {
-    @apply bg-green/10 text-green placeholder:text-green placeholder:opacity-50 outline-none border border-green p-2 w-full;
+    @apply bg-green/10 font-primary placeholder:opacity-50 outline-none border p-2 w-full;
+  }
+  .input-green,
+  .textarea-green {
+    @apply text-green placeholder:text-greenborder-green;
+  }
+  .input-purple,
+  .textarea-purple {
+    @apply text-purple placeholder:text-purple border-purple;
+  }
+  .input-pink,
+  .textarea-pink {
+    @apply text-pink placeholder:text-pink border-pink;
   }
   .green-btn {
     @apply border border-green bg-green/20 px-5 py-1 text-green hover:bg-green/30 duration-300;
@@ -50,10 +62,7 @@ body {
     @apply text-green font-bold hover:underline;
   }
   .hover-image {
-    @apply brightness-90 hover:brightness-100 duration-300;
-  }
-  .content-bg {
-    @apply bg-neutral-900/50 border shadow-[0px_0px_10px_1px] shadow-neutral-700 border-lightgray/20 rounded-sm;
+    @apply brightness-[0.8] hover:brightness-100 duration-300;
   }
 }
 

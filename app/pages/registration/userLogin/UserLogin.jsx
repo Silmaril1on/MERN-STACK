@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/app/components/Button";
+import Button from "@/app/components/uicomponents/Button";
 import { useLogin } from "@/app/hooks/useLogin";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

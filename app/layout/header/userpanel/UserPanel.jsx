@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setLoading } from "@/app/features/modalSlice";
 import { getUser } from "@/app/features/userSlice";
-import Link from "next/link";
 import Spinner from "@/app/components/Spinner";
-import UsernamePanel from "./UsernamePanel";
+import UsernamePanel from "./panels/UsernamePanel";
+import RegPanel from "./panels/RegPanel";
+import UserFavoritesPanel from "./useractives/UserFavoritesPanel";
 
 const UserPanel = () => {
   const dispatch = useDispatch();
@@ -26,16 +27,16 @@ const UserPanel = () => {
   }
 
   return (
-    <>
+    <div>
       {user ? (
-        <UsernamePanel />
-      ) : (
-        <div className="space-x-3">
-          <Link href="/login">Login</Link>
-          <Link href="/signup">Sign Up</Link>
+        <div className="flex-center">
+          <UserFavoritesPanel />
+          <UsernamePanel />
         </div>
+      ) : (
+        <RegPanel />
       )}
-    </>
+    </div>
   );
 };
 

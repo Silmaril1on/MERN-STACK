@@ -1,4 +1,4 @@
-import Close from "@/app/components/Close";
+import Close from "@/app/components/uicomponents/Close";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import MetaScoreColors from "@/app/components/artistcomponents/MetaScoreColors";
 import RatioButtons from "./RatioButtons";
 import Scores from "./Scores";
 import ErrorMsg from "@/app/components/ErrorMsg";
-import WhiteSvg from "@/app/components/materials/WhiteSvg";
+import BorderSvg from "@/app/components/materialcomponents/WhiteSvg";
 
 const Ratings = ({ item, onClose }) => {
   const { user } = useSelector((store) => store.user);
@@ -81,9 +81,12 @@ const Ratings = ({ item, onClose }) => {
       className="fixed inset-0 bg-black/60 backdrop-blur-sm flex-center z-50 font-secondary"
     >
       <div className="bg-blue/40 backdrop-blur-3xl p-8 rounded-lg relative">
-        <WhiteSvg />
+        <BorderSvg color="green" />
         <div className="absolute top-4 right-4">
-          <Close onClick={() => dispatch(setSelectedArtistId(null))} />
+          <Close
+            className="text-green"
+            onClick={() => dispatch(setSelectedArtistId(null))}
+          />
         </div>
         <div className="flex flex-col items-center space-y-4 py-4 px-8">
           <Scores rating={rating} item={item} />

@@ -3,9 +3,9 @@ const MetaScoreColors = ({ item, className }) => {
   const totalScore = item?.ratingStats?.totalRatings;
 
   return (
-    <div className="flex items-center space-x-3 font-primary">
+    <div className="flex items-center space-x-3 font-secondary">
       <div
-        className={`py-1 w-10 flex-center rounded text-md font-bold ${
+        className={`py-1 w-10 flex-center  rounded text-md font-bold ${
           metaScore >= 75
             ? "bg-green/20 text-green"
             : metaScore >= 45
@@ -15,7 +15,7 @@ const MetaScoreColors = ({ item, className }) => {
       >
         {metaScore}
       </div>
-      <span className={`text-sm font-light ${className}`}>
+      <span className={`text-sm font-light  ${className}`}>
         {totalScore > 0 ? totalScore : ""}{" "}
         {totalScore > 0 ? "Listeners Score" : "No Ratings"}
       </span>

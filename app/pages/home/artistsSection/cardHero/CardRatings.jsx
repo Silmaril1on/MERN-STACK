@@ -17,7 +17,10 @@ const CardRatings = ({ item, onRate }) => {
   };
 
   return (
-    <div onClick={onArtistRate} className="relative cursor-pointer">
+    <div
+      onClick={onArtistRate}
+      className="relative cursor-pointer inline-block"
+    >
       <MetaScoreColors item={item} />
     </div>
   );

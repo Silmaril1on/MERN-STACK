@@ -1,4 +1,4 @@
-import LinkComponent from "@/app/components/materials/LinkComponent";
+import LinkComponent from "@/app/components/uicomponents/LinkComponent";
 import { FaBookOpen, FaCalendar } from "react-icons/fa";
 import FavoriteIcon from "../../home/artistsSection/addToSection/FavoriteIcon";
 

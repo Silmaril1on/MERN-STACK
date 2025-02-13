@@ -50,7 +50,7 @@ const ReviewLikeButtons = ({ review, artistId }) => {
   };
 
   return (
-    <div className="flex-center flex-row space-x-5 mt-2 *:flex-center *:flex-row [&_span]:text-sm *:space-x-1 font-primary [&_svg]:cursor-pointer [&_svg]:text-lightgray [&_svg]:hover:*:text-white [&_svg]:duration-300">
+    <div className="flex-center flex-row space-x-5 mt-2 *:flex-center *:flex-row [&_span]:text-sm [&_span]:font-secondary *:space-x-1 font-primary [&_svg]:cursor-pointer [&_svg]:text-lightgray [&_svg]:hover:*:text-white [&_svg]:duration-300">
       <div>
         {reactions.hasLiked ? (
           <BiSolidLike size={20} onClick={() => handleReaction("like")} />

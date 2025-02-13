@@ -1,3 +1,5 @@
+import Button from "@/app/components/uicomponents/Button";
+import Title from "@/app/components/uicomponents/Title";
 import { setReviewModal, setReviewsData } from "@/app/features/modalSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,10 +51,10 @@ const ReviewInputs = ({ item, setError }) => {
   return (
     <form
       onSubmit={handleSubmitReview}
-      className="relative z-10 flex-center flex-col font-secondary "
+      className="relative z-10 flex-center flex-col font-secondary"
     >
-      <h1 className="text-3xl pb-5 text-lightgray">{displayName}</h1>
-      <div className="space-y-3">
+      <Title size={20}>{displayName}</Title>
+      <div className="space-y-3 mt-5 input-purple">
         <input
           type="text"
           placeholder="Review Title"
@@ -66,13 +68,13 @@ const ReviewInputs = ({ item, setError }) => {
           onChange={(e) => setComment(e.target.value)}
         />
       </div>
-      <button
+      <Button
         disabled={loading}
         type="submit"
-        className="green-btn mt-1 cursor-pointer"
+        className="purple-btn mt-1 cursor-pointer"
       >
         {loading ? "Submitting..." : "Submit Review"}
-      </button>
+      </Button>
     </form>
   );
 };

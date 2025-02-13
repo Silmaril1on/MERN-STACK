@@ -21,9 +21,13 @@ export default {
         white: "#ffffff",
       },
       fontFamily: {
-        primary: ["Montserrat Alternates", "sans-serif"],
-        secondary: ["bebas neue", "sans-serif"],
-        tetriary: ["rationale", "sans-serif"],
+        secondary: ["Montserrat Alternates", "sans-serif"],
+        primary: ["rationale", "sans-serif"],
+      },
+      boxShadow: {
+        sm: "0 0 10px 1px",
+        lg: "0 0 20px 2px",
+        xl: "0 0 40px 4px",
       },
     },
   },

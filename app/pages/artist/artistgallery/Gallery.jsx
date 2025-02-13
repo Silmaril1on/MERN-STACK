@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import LeftButton from "@/app/components/LeftButton";
-import RightButton from "@/app/components/RightButton";
+import LeftButton from "@/app/components/uicomponents/LeftButton";
+import RightButton from "@/app/components/uicomponents/RightButton";
 import Image from "next/image";
 import { slideShow } from "@/app/animations/motionValues";
 import GalleryHeadline from "./GalleryHeadline";

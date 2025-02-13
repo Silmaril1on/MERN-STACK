@@ -2,7 +2,7 @@ import Image from "next/image";
 import { RemoveButton } from "./RemoveButton";
 import CardDetails from "./CardDetails";
 import Link from "next/link";
-import WhiteSvg from "@/app/components/materials/WhiteSvg";
+import WhiteSvg from "@/app/components/materialcomponents/WhiteSvg";
 
 const Card = ({ favorites, setFavorites }) => {
   return (

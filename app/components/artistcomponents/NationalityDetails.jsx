@@ -4,7 +4,7 @@ const NationalityDetails = ({ item, className }) => {
   const { flag, country, city } = item;
   return (
     <div
-      className={`flex flex-row items-center space-x-1 font-light capitalize ${className}`}
+      className={`w-fit flex-center space-x-1 font-light capitalize ${className}`}
     >
       <Image
         src={flag}
@@ -13,7 +13,7 @@ const NationalityDetails = ({ item, className }) => {
         height={100}
         className="w-6 mr-2"
       />
-      <div className="flex-center pl-2 space-x-1 capitalize group-hover:text-white duration-300">
+      <div className="flex-center space-x-1 capitalize group-hover:text-white duration-300 font-secondary font-normal">
         <span>{country}</span>, <span>{city}</span>
       </div>
     </div>

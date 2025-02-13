@@ -1,5 +1,5 @@
-import LeftButton from "@/app/components/LeftButton";
-import RightButton from "@/app/components/RightButton";
+import LeftButton from "@/app/components/uicomponents/LeftButton";
+import RightButton from "@/app/components/uicomponents/RightButton";
 
 const SliderButtons = ({
   artists,
